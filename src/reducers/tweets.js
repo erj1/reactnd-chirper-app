@@ -1,5 +1,4 @@
 import { RECEIVE_TWEETS, TOGGLE_TWEET } from "../actions/tweets";
-import authedUser from "./authedUser";
 
 export default function tweets (state={}, action) {
   switch(action.type) {
