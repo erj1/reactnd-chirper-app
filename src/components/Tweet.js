@@ -52,11 +52,13 @@ class Tweet extends Component {
           <div>
             <span>{name}</span>
             <div>{formatDate(timestamp)}</div>
-            {parent && (
-              <button className="replying-to" onClick={(event => this.toParent(event, parent.id))}>
-                Replying to @{parent.author}
-              </button>
-            )}
+            <div>
+              {parent && (
+                <button className="replying-to" onClick={(event => this.toParent(event, parent.id))}>
+                  Replying to @{parent.author}
+                </button>
+              )}
+            </div>
             { text }
           </div>
           <div className="tweet-icons">
