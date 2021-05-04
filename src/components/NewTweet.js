@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { handleAddTweet } from "../actions/tweets";
+import { Redirect } from "react-router-dom";
 
 
 class NewTweet extends Component {
@@ -8,7 +9,8 @@ class NewTweet extends Component {
   maxlength = 280
 
   state = {
-    text: ''
+    text: '',
+    toHome: false
   }
 
   handleChange = (e) => {
@@ -23,14 +25,23 @@ class NewTweet extends Component {
     const { text } = this.state;
     const { dispatch, id } = this.props;
     dispatch(handleAddTweet(text, id));
+    console.log('id: ', id);
     this.setState(() => ({
-      text: ''
+      text: '',
+      toHome: !id
     }));
   }
 
   render() {
-    const { text } = this.state;
+    const { text, toHome } = this.state;
     const textRemaining = this.maxlength - text.length;
+
+    console.log(toHome);
+
+    if (toHome) {
+      return <Redirect to='/' />
+    }
+
     return (
       <div>
         <h3 className="center">Compose New Tweet</h3>
